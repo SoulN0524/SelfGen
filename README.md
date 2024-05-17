@@ -1,0 +1,2 @@
+# SelfGen
+AI Forex Project

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>彗星導航</title>
+  <script src="../static/script.js"></script>
+  <link rel="stylesheet" href="../static/style.css" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+  <body>
+    <div class="banner">
+      <div class="quote">
+        <header>
+          <nav>
+            <img src="../static/image/ExStar.png" alt="ExStar" />
+            <ul>
+              <li class="Chinese"><a href="./index.html">首頁</a></li>
+              <li class="Chinese">
+                <a class="active" href="#">服務內容</a>
+                <div class="dropdown-content">
+                  <a href="../static/service01.html">外匯技術分析圖表</a>
+                  <a href="../static/service02.html">外匯數據視覺化分析</a>
+                  <a href="#">外匯事件時間軸AI分析服務</a>
+                  <a href="./service04.html">投資 X 旅遊雙模態ChatBot</a>
+                </div>
+              </li>
+              <li class="Chinese"><a href="../static/technique.html">技術介紹</a></li>
+              <li class="Chinese"><a href="../static/exschool.html">外匯小學堂</a></li>
+              <li class="Chinese"><a href="../static/contactus.html">聯絡我們</a></li>
+            </ul>
+            <ul>
+              <li class="English"><a href="./index.html">Home</a></li>
+              <li class="English"><a class="active" href="#">Service</a></li>
+              <li class="English"><a href="../static/technique.html">Technique</a></li>
+              <li class="English"><a href="../static/exschool.html">ExSchool</a></li>
+              <li class="English"><a href="../static/contactus.html">Contact Us</a></li>
+            </ul>
+          </nav>
+        </header>
+        <main class="sethree">
+          <h2 class="ana">外匯事件時間軸AI分析服務</h2>
+          <div class="timeline-container">
+            <div class="timeline" id="timeline">
+              <div class="event" data-time="2020-03-15">
+                <h4>2020-03-15</h4>
+                <p>美國 5 年 Breakeven Rate</p>
+                <p>Breakeven Rate 為 2.34%，低於前一月。</p>
+              </div>
+              <div class="event" data-time="2019-09-10">
+                <h4>2019-09-10</h4>
+                <p>美國 10 年公債殖利率</p>
+                <p>殖利率區間為 4.4204%-4.5180%。</p>
+              </div>
+              <div class="event" data-time="2019-05-10">
+                <h4>2019-05-10</h4>
+                <p>美國 4 月非農就業報告</p>
+                <p>非農就業人數新增 17.5 萬，不及市場預期。</p>
+              </div>
+              <div class="event" data-time="2018-07-03">
+                <h4>2018-07-03</h4>
+                <p>美國 CFTC 報告</p>
+                <p>美元投機者期貨淨空單小幅下降。</p>
+              </div>
+              <div class="event" data-time="2018-04-15">
+                <h4>2018-04-15</h4>
+                <p>中國 4 月外匯儲備</p>
+                <p>外匯儲備為 3.2 兆美元，小幅下降。</p>
+              </div>
+
+            </div>
+            <div id="scatter" class="fade-in"></div>
+          </div>
+
+        </main>
+        <script>
+          var graphs = {{ plot|safe }};
+          Plotly.newPlot('scatter', graphs, {});
+
+          document.querySelectorAll('.event').forEach(function (event) {
+            event.addEventListener('mouseover', function () {
+              var time = event.getAttribute('data-time');
+              var update = {
+                opacity: 1,
+                'line.color': 'rgba(255, 0, 0, 1)'
+              };
+              var indices = graphs[0].x.findIndex(x => x === time);
+              if (indices >= 0) {
+                Plotly.restyle('scatter', update, [indices]);
+              }
+            });
+            event.addEventListener('mouseout', function () {
+              var update = {
+                opacity: 0.6,
+                'line.color': 'rgba(0, 0, 0, 1)'
+              };
+              Plotly.restyle('scatter', update);
+            });
+          });
+        </script>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/2.0.4/canvas-nest.js"
+          integrity="sha512-P+NGabN/TJDOnCVOFJO+E06TBm4i+M8dTT91lWg/8UpwLrzicEXIypmABPpA47D0x6r+yxFHjYIZKWhc1h7xlQ=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+          color="253,212,107"
+          opacity="0.75"
+          zIndex="-1"
+          count="150"
+        ></script>
+      </div>
+    </div>
+  </body>
+</html>

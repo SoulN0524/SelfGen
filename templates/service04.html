@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>彗星導航</title>
+  <script src="../static/script.js"></script>
+  <link rel="stylesheet" href="../static/style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fdd46b;
+      text-shadow: 2px 2px #000000;
+    }
+    #chatbox {
+      width: 70%;
+      max-width: 975px;
+      height: 600px;
+      margin: 40px 2.5%;
+      margin-left:20px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      float: right;
+    }
+    #surveybox {
+      width: 25%;
+      max-width: 375px;
+      height: 600px;
+      margin: 40px 2.5%;
+      margin-right:20px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      float: left;
+    }
+    #messages {
+      height: 410px;
+      overflow-y: auto;
+      border: 1px solid #333;
+      padding: 10px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background: #232323;
+      color: #00e676;
+    }
+    .message {
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      word-wrap: break-word;
+    }
+    .user-message {
+      text-align: right;
+      padding: 10px 10px;
+      font-size: 1.2rem;
+      background: #fada89;
+      color: #000000;
+    }
+    .bot-message {
+      text-align: left;
+      padding: 10px 10px;
+      font-size: 1.2rem;
+      background: #d886f6;
+      color: #000000;
+    }
+    #user-input {
+      width: calc(100% - 60px);
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background: #333;
+      color: #ffffff;
+    }
+    #send-button {
+      padding: 10px;
+      background: linear-gradient(45deg, #00e676, #007bff);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    #send-button:hover {
+      background: linear-gradient(45deg, #007bff, #00e676);
+    }
+    #mode-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    #mode-switch:hover {
+      background: #00e676;
+    }
+    #prompt-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #fdd46b;
+      color: #000;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    #prompt-button:hover {
+      background: #ffc107;
+    }
+    .survey-question {
+      margin-bottom: 10px;
+    }
+    .survey-question h3 {
+      margin-bottom: 10px;
+    }
+    .survey-question button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #333;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: 600;
+    }
+    .survey-question button:hover {
+      background: #555;
+    }
+    .survey-question button.active {
+      background: #007bff;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="quote">
+      <header>
+        <nav>
+          <img src="../static/image/ExStar.png" alt="ExStar" />
+          <ul>
+            <li class="Chinese"><a href="./index.html">首頁</a></li>
+            <li class="Chinese">
+              <a class="active" href="#">服務內容</a>
+              <div class="dropdown-content">
+                <a href="../static/service01.html">外匯技術分析圖表</a>
+                <a href="../static/service02.html">外匯數據視覺化分析</a>
+                <a href="./service03.html">外匯事件時間軸
+                  AI分析服務</a>
+                <a href="#">投資 X 旅遊雙模態ChatBot</a>
+              </div>
+            </li>
+            <li class="Chinese"><a href="../static/technique.html">技術介紹</a></li>
+            <li class="Chinese"><a href="../static/exschool.html">外匯小學堂</a></li>
+            <li class="Chinese"><a href="../static/contactus.html">聯絡我們</a></li>
+          </ul>
+          <ul>
+            <li class="English"><a href="./index.html">Home</a></li>
+            <li class="English"><a class="active" href="#">Service</a></li>
+            <li class="English"><a href="../static/technique.html">Technique</a></li>
+            <li class="English"><a href="../static/exschool.html">ExSchool</a></li>
+            <li class="English"><a href="../static/contactus.html">Contact Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div id="surveybox">
+          <h2>使用者調查</h2>
+          <div id="survey-questions">
+            <!-- 投資模態 -->
+            <div class="survey-question investment-question">
+              <h3>風險偏好</h3>
+              <button data-value="積極">積極</button>
+              <button data-value="中立">中立</button>
+              <button data-value="保守">保守</button>
+            </div>
+            <div class="survey-question investment-question">
+              <h3>外匯了解程度</h3>
+              <button data-value="專家">專家</button>
+              <button data-value="一般">一般</button>
+              <button data-value="初學者">初學者</button>
+            </div>
+            <div class="survey-question investment-question">
+              <h3>投資目的</h3>
+              <button data-value="短期收益">短期收益</button>
+              <button data-value="長期增值">長期增值</button>
+              <button data-value="避險">避險</button>
+            </div>
+            <!-- 旅遊模態 -->
+            <div class="survey-question travel-question" style="display:none;">
+              <h3>旅遊國家選定方式</h3>
+              <button data-value="近期幣值較低">近期幣值較低</button>
+              <button data-value="已有選定國家">已有選定國家</button>
+              <button data-value="尚未決定">尚未決定</button>
+            </div>
+            <div class="survey-question travel-question" style="display:none;">
+              <h3>外匯了解程度</h3>
+              <button data-value="專家">專家</button>
+              <button data-value="一般">一般</button>
+              <button data-value="初學者">初學者</button>
+            </div>
+            <div class="survey-question travel-question" style="display:none;">
+              <h3>可接受安排的時間</h3>
+              <button data-value="短期(3個月內)">短期(3個月內)</button>
+              <button data-value="中期(3~6個月)">中期(3~6個月)</button>
+              <button data-value="長期(6個月以上)">長期(6個月以上)</button>
+            </div>
+          </div>
+        </div>
+        <div id="chatbox">
+          <h1>外匯 X 投資 雙模態ChatBot</h1>
+          <button id="mode-switch">切換模態</button>
+          <button id="prompt-button">提示問題</button>
+          <div id="messages"></div>
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message..."
+          />
+          <button id="send-button">Send</button>
+        </div>
+        <script>
+          $(document).ready(function () {
+            var $messages = $("#messages");
+            var $userInput = $("#user-input");
+            var $sendButton = $("#send-button");
+            var $modeSwitch = $("#mode-switch");
+            var $promptButton = $("#prompt-button");
+            var mode = "投資"; // 默認模態
+
+            function updateSurveyVisibility() {
+              if (mode === "投資") {
+                $(".investment-question").show();
+                $(".travel-question").hide();
+              } else {
+                $(".investment-question").hide();
+                $(".travel-question").show();
+              }
+            }
+
+            $modeSwitch.on("click", function () {
+              if (mode === "投資") {
+                mode = "旅遊";
+                $modeSwitch.text("切換到投資模態");
+                $("h1").text("外匯 X 旅遊 雙模態ChatBot");
+              } else {
+                mode = "投資";
+                $modeSwitch.text("切換到旅遊模態");
+                $("h1").text("外匯 X 投資 雙模態ChatBot");
+              }
+              updateSurveyVisibility();
+            });
+
+            $promptButton.on("click", function () {
+              var prompts = {
+                "投資": [
+                  "請分析一下美元對歐元的走勢。"
+                ],
+                "旅遊": [
+                  "哪個國家的匯率最划算?"
+                ]
+              };
+              var prompt = prompts[mode][Math.floor(Math.random() * prompts[mode].length)];
+              $userInput.val(prompt);
+            });
+
+            $sendButton.on("click", function () {
+              var message = $userInput.val();
+              if (message.trim() === "") {
+                return;
+              }
+
+              var userMessageDiv = $(
+                '<div class="message user-message">' + message + "</div>"
+              );
+              $messages.append(userMessageDiv);
+              $userInput.val("");
+
+              anime({
+                targets: userMessageDiv[0],
+                translateX: [100, 0],
+                opacity: [0, 1],
+                duration: 800,
+                easing: "easeOutExpo",
+              });
+
+              $.ajax({
+                url: "/chat/message",
+                type: "POST",
+                data: { message: message, mode: mode },
+                success: function (data) {
+                  var botMessageDiv = $(
+                    '<div class="message bot-message">' +
+                      data.botMessage +
+                      "</div>"
+                  );
+                  $messages.append(botMessageDiv);
+
+                  anime({
+                    targets: botMessageDiv[0],
+                    translateX: [-100, 0],
+                    opacity: [0, 1],
+                    duration: 800,
+                    easing: "easeOutExpo",
+                  });
+
+                  $messages.scrollTop($messages[0].scrollHeight);
+                },
+                error: function (xhr) {
+                  alert("Error: " + xhr.status);
+                },
+              });
+            });
+
+            $userInput.on("keypress", function (e) {
+              if (e.which == 13) {
+                $sendButton.click();
+              }
+            });
+
+            // 使調查選項在被選擇時高亮顯示
+            $(".survey-question button").on("click", function () {
+              $(this).siblings().removeClass("active");
+              $(this).addClass("active");
+            });
+
+            updateSurveyVisibility();
+          });
+        </script>
+      </main>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/canvas-nest.js/2.0.4/canvas-nest.js"
+        integrity="sha512-P+NGabN/TJDOnCVOFJO+E06TBm4i+M8dTT91lWg/8UpwLrzicEXIypmABPpA47D0x6r+yxFHjYIZKWhc1h7xlQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+        color="253,212,107"
+        opacity="0.75"
+        zIndex="-1"
+        count="150"
+      ></script>
+    </div>
+  </div>
+</body>
+</html>

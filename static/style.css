@@ -1,0 +1,711 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, "Basier Circle", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+.banner {
+  width: 100%;
+  height: 1800px;
+  background-image: linear-gradient(
+      to bottom,
+      rgb(255, 251, 203),
+      rgba(48, 39, 7, 0.6)
+    ),
+    url("https://images.unsplash.com/photo-1669881336715-5a51a78d5434?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.quote {
+  margin: 0 auto;
+}
+
+/* 前置樣式設定，將所有元素的邊距、內距歸零，盒模型設定為邊框盒模型，字體設定為DFkai-sb、sans-serif字型。 */
+
+header nav {
+  font-weight: bold;
+}
+
+header nav img {
+  width: 150px;
+  height: 50px;
+  padding: 15px 20px;
+}
+
+header nav ul {
+  /* box-sizing: content-box; */
+  background-color: #fdd46b;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  align-items: center;
+  text-align: center;
+}
+
+/*  */
+.dropdown-content {
+  display: none; /* 隱藏下拉式選單 */
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.Chinese:hover .dropdown-content {
+  display: block; /* 顯示下拉式選單 */
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #fdd46b;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1); /* 內框陰影 */
+}
+
+/*  */
+header nav ul li.Chinese {
+  width: 150px;
+  padding: 24px 24px 0px 24px;
+}
+
+header nav ul li.English {
+  width: 150px;
+  padding: 0px 24px 24px 24px;
+}
+
+nav ul li.Chinese a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+nav ul li.English a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+/* header的設定 接下來為各頁的自我設計 */
+
+/* index.html */
+.product-features {
+  padding: 50px 0;
+  text-align: center;
+  /* background-color: #f3f3f3; */
+}
+
+.product-features h2 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: #393535;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.product-features .slogan {
+  font-size: 1.5rem;
+  color: #505050;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.feature-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.feature-item {
+  width: 320px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: scale 0.25s ease-in-out, opacity 0.25s ease-in-out,
+    filter 0.25s ease-in-out;
+  &:hover {
+    scale: 1.1;
+  }
+}
+
+.feature-item:has(.feature-item:hover).feature-container:not(:hover) {
+  scale: 0.8;
+  opacity: 0.8;
+  filter: blur(4px);
+}
+
+.feature-icon img {
+  width: 240px;
+  height: 160px;
+}
+
+.feature-item h3 {
+  padding: 0.7rem 0 0.3rem 0;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 800;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 600;
+}
+
+/* service.html */
+
+main.no-flex {
+  display: block;
+  text-align: center;
+}
+
+h2.ser {
+  margin: 20px 300px;
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 1000;
+  color: rgb(55, 45, 4);
+}
+
+.tradingview-widget-container {
+  margin: 0px 20px 20px 20px;
+  padding: 20px;
+  background-color: #f0f0f0; /* 將背景色改為灰色 */
+  box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* 添加圓角 */
+}
+
+.Figma {
+  margin: 0px 20px 20px 20px;
+  padding: 20px;
+  background-color: #ffffff; /* 將背景色改為灰色 */
+  box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* 添加圓角 */
+}
+
+.scatter {
+  margin: 0px 20px 20px 20px;
+  padding: 20px;
+  background-color: #ffffff; /* 將背景色改為灰色 */
+  box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* 添加圓角 */
+}
+
+.tech {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.system {
+  width: 60%;
+  height: 100%;
+  margin: 20px 20px 20px 20px;
+  padding: 0px;
+  background-color: #ffffff; /* 將背景色改為灰色 */
+  box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 10px; /* 添加圓角 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.system img {
+  width: 100%;
+  height: 100%;
+}
+
+/* technique */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eaeaea; /* 添加背景顏色 */
+  margin: 0;
+  padding: 0;
+}
+
+.teach {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.teach-end {
+  flex: 1;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.teach-end:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* 添加懸浮效果 */
+  -webkit-box-shadow: 0px 0px 15px 3px rgba(255, 234, 46, 0.9);
+  -moz-box-shadow: 0px 0px 15px 3px rgba(255, 234, 46, 0.9);
+  box-shadow: 0px 0px 15px 3px rgba(255, 234, 46, 0.9);
+}
+
+.teach-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-weight: 900;
+  background: linear-gradient(45deg, #ff6f61, #d64b97);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.teach-subtitle {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #6b5b95, #88b04b);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.teach-list {
+  list-style: none;
+  padding: 0;
+}
+
+.teach-item {
+  margin-bottom: 10px;
+}
+
+.teach-item strong {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #333; /* 加深文字顏色 */
+}
+
+.teach-item {
+  border-left: 4px solid #ff6f61; /* 添加左邊框顏色 */
+  padding-left: 10px;
+  transition: border-color 0.3s ease;
+}
+
+.teach-item:hover {
+  border-color: #d64b97; /* 添加懸浮效果變色 */
+}
+
+/* exschool */
+/* 現有CSS保持不變，新增以下CSS */
+
+.forex-school {
+  padding: 40px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.forex-school h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 900;
+}
+
+.terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.term {
+  flex: 1 1 calc(33.333% - 20px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
+  background: linear-gradient(45deg, #e3ffe7, #d9e7ff); /* 添加漸變背景色 */
+}
+
+.term:hover {
+  font-weight: 700;
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: #f0f8ff; /* 懸浮時改變背景色 */
+}
+
+.term h2 {
+  font-weight: 600;
+  font-size: 1.5em;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.term p {
+  font-size: 1em;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.term p:last-child {
+  margin-bottom: 0; /* 最後一段落沒有下邊距 */
+}
+
+/* 添加動畫效果 */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.term {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* 背景動態效果 */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* contactus */
+.contact-us {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background-color: rgba(34, 34, 34, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+
+.contact-us h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #ffd700;
+  font-weight: 900;
+}
+
+.contact-us p {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact-method {
+  flex: 1 1 45%;
+  margin: 10px;
+  background: linear-gradient(135deg, #ecbac4, #a8b0db);
+  padding: 15px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #a8b0db, #ecbac4);
+}
+
+.contact-method h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: black;
+  font-weight: 700;
+}
+
+.contact-method p,
+.contact-method a {
+  font-size: 1.1em;
+  color: #000000;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.contact-method a:hover {
+  text-decoration: underline;
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.contact-form h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #ffd700;
+}
+
+.contact-form label {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  display: block;
+  color: #ffffff;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+.contact-form input {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.contact-form textarea {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.contact-form button {
+  padding: 10px 20px;
+  background-color: #ffd700;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #ffc107;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* service03 */
+
+/* 新增的樣式放在原有的 CSS 後面 */
+
+.timeline-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.timeline {
+  width: 80%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: 600px;
+  margin-right: 5%;
+}
+.event {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-left: 5px solid #007bff;
+  background: #f4f4f4;
+  transition: background 0.3s;
+}
+.event:hover {
+  background: #e2e2e2;
+}
+.event h4 {
+  margin-bottom: 5px;
+  color: #333;
+}
+.event p {
+  color: #555;
+}
+#scatter {
+  width: 100%;
+  height: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+main.sethree {
+  display: block;
+  text-align: center;
+}
+
+h2.ana {
+  margin: 20px 300px;
+  padding: 0.5rem 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: rgb(55, 45, 4);
+}
+
+/* 合作企業 */
+.partners {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.partners h2 {
+  font-size: 2.5rem;
+  font-weight:600;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.partners-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.partner-item {
+  padding: 20px;
+  color:white;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  border-radius:5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.partner-item h3{
+  font-weight:900;
+}
+
+.partner-logo {
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+
+.partner-info {
+  text-align: left;
+}
+
+.partner-info h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.partner-info p {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+.partner-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  color: #000;
+}
+
+.partner-item:hover .partner-item {
+  color: #000;
+}
+
+hr {
+  border: 3;
+  height: 3px;
+  background: #fff;
+  margin: 50px 0;
+}
+
+/* 常見問答 */
+.faq {
+  text-align: left;
+  padding: 50px 5%;
+}
+
+.faq h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.faq-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 20px;
+}
+
+.faq-item h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  color: #666;
+  font-weight:600;
+}
+
+.faq-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
